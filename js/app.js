@@ -52,11 +52,11 @@ class Calendar{
             endOfPrev = new Date(year - 1, 11, 0).getDate();
         };
         document.querySelector('p').innerHTML = `${this.monthsNames[month]} ${year}`;
-        let calendarTable = '<table><tr class="daysNamesHeader">';
+        let calendarTable = '<table><thead><tr id="daysNamesHeader">';
         for(let i = 0; i < this.daysNames.length; i++){
             calendarTable += '<td>' + this.daysNames[i] + '</td>'
         };
-        calendarTable += '</tr>';
+        calendarTable += '</thead></tr><tbody>';
 
         let i = 1;
         do{
@@ -92,7 +92,7 @@ class Calendar{
             };
             i++;
         } while(i <= end);
-        calendarTable += '</table>';
+        calendarTable += '</tbody></table>';
         document.getElementById('calendar').innerHTML = calendarTable;
     }
 }
