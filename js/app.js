@@ -38,6 +38,19 @@ class Calendar{
         });
     }
 
+    tasks(){
+        const tds = document.querySelectorAll('td');
+        console.log(tds);
+        for (var i = 0; i < tds.length; i++) {
+            tds[i].addEventListener('click', task)
+        };
+
+        function task(e){
+            this.classList.add('choosen');
+            document.getElementById('task').style.display = 'block';
+        }
+    }
+
     render(){
         this.createCalendar(this.currentYear, this.currentMonth);
     }
@@ -52,9 +65,9 @@ class Calendar{
             endOfPrev = new Date(year - 1, 11, 0).getDate();
         };
         document.querySelector('p').innerHTML = `${this.monthsNames[month]} ${year}`;
-        let calendarTable = '<table><thead><tr id="daysNamesHeader">';
+        let calendarTable = '<table><thead><tr>';
         for(let i = 0; i < this.daysNames.length; i++){
-            calendarTable += '<td>' + this.daysNames[i] + '</td>'
+            calendarTable += '<th>' + this.daysNames[i] + '</th>'
         };
         calendarTable += '</thead></tr><tbody>';
 
@@ -93,7 +106,7 @@ class Calendar{
             i++;
         } while(i <= end);
         calendarTable += '</tbody></table>';
-        document.getElementById('calendar').innerHTML = calendarTable;
+        document.getElementById('calendarTable').innerHTML = calendarTable;
     }
 }
 
@@ -101,4 +114,5 @@ document.addEventListener('DOMContentLoaded', function(){
     const test = new Calendar()
     test.render();
     test.buttons();
+
 });

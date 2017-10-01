@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #4F4C4D;
+    color: #383435;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #E0E0E0;
+}
+
+#container {
+    height: 100vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#calendar {
+    background: #3B3738;
+    width: 350px;
+    height: 350px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    -webkit-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    -moz-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    padding: 10px;
+    border-radius: 2%;
+}
+
+header {
+    width: 280px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+#calendarTable {
+    height: 282px;
+}
+
+span, p {
+    font-size: 21px;
+    transition: transform 0.2s ease-in-out;
+}
+
+span:hover {
+    transform: scale(1.4);
+}
+
+span:active {
+    color: #E50000;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+td:hover {
+    background: rgba(255,0,0, 0.7);
+    transform: scale(1.15);
+    border-radius: 8%;
+}
+
+thead {
+    border-bottom: 1px solid #E50000;
+    font-size: 18px;
+}
+
+.otherMonth {
+    color: #808080;
+}
+
+#now {
+    background: #E50000;
+    border-radius: 8%;
+}
+
+.choosen {
+    background: #e50000;
+    background: -moz-linear-gradient(top, #e50000 0%, #bf0600 17%, #6b1000 78%);
+    background: -webkit-linear-gradient(top, #e50000 0%,#bf0600 17%,#6b1000 78%);
+    background: linear-gradient(to bottom, #e50000 0%,#bf0600 17%,#6b1000 78%); /
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e50000', endColorstr='#6b1000',GradientType=0 );
+    font-weight: bold;
+    border-radius: 8%;
+}
+
+#task {
+    display: none;
+    background: #3B3738;
+    width: 350px;
+    height: 350px;
+    -webkit-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    -moz-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
+    margin-top: 25px;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}
