@@ -139,6 +139,19 @@ thead {
     margin-top: 25px;
 }
 
+/* TASK - HEADER */
+
+#task header {
+    border-bottom: 1px solid #E50000;
+}
+
+#task header p {
+    float: left;
+    padding: 5px 15px;
+    letter-spacing: 2px;
+}
+
+/* TASK HEADER - CLOSE */
 #close {
     color: #E50000;
     width: 40px;
@@ -159,16 +172,7 @@ thead {
     transform: scale(.8);
 }
 
-#task header {
-    border-bottom: 1px solid #E50000;
-}
-
-#task header p {
-    float: left;
-    padding: 5px 15px;
-    letter-spacing: 2px;
-}
-
+/* ADD TASK & BUTTONS */
 #addTaskInput {
     width: 70%;
     margin: 10px auto;
@@ -212,6 +216,16 @@ thead {
     border: 1px solid #E50000;
 }
 
+#task button.done:hover {
+    background: green;
+    border: 1px solid green;
+}
+
+#task button.done:focus {
+    background: green;
+    border: 1px solid green;
+}
+
 #task button:active {
     transform: scale(.9);
 }
@@ -221,6 +235,8 @@ thead {
     background: #E50000;
 }
 
+
+/* LIST  */
 #task > div p {
     font-size: 20px;
     text-align: center;
@@ -238,6 +254,12 @@ thead {
 
 .delete {
     margin: 0 10px;
+}
+
+.mark {
+    background: #E50000;
+    width: 10px;
+    height: 2px;
 }
 
 @keyframes fadeInDown {
