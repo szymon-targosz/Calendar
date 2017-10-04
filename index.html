@@ -8,15 +8,29 @@
 </head>
 <body>
     <div id="container" class="fadeInDown">
-        <div id="calendar">
+        <section id="calendar">
             <header>
                 <span id="prev">&lt;</span>
                 <p></p>
                 <span id="next">&gt;</span>
             </header>
             <div id="calendarTable"></div>
-        </div>
-        <div id="task"></div>
+        </section>
+        <section id="task">
+            <header>
+                <p></p>
+                <div id="close">X</div>
+                <div class="clearfix"></div>
+            </header>
+            <div>
+                <div id="addTaskInput">
+                    <input type="text" placeholder="Add task...">
+                    <button type="button" id='addBtn'>add</button>
+                </div>
+                <p>Tasks:</p>
+                <ol></ol>
+            </div>
+        </section>
     </div>
     <script src="js/app.js" type="text/javascript"></script>
 </body>

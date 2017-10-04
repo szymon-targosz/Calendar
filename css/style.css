@@ -29,7 +29,7 @@ body {
 #calendar {
     background: #3B3738;
     width: 350px;
-    height: 350px;
+    height: 370px;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -44,7 +44,7 @@ body {
     border-radius: 2%;
 }
 
-header {
+#calendar header {
     width: 280px;
     display: -webkit-box;
     display: -moz-box;
@@ -58,17 +58,25 @@ header {
     height: 282px;
 }
 
-span, p {
-    font-size: 21px;
-    transition: transform 0.2s ease-in-out;
+#calendar p {
+    font-size: 22px;
+    line-height: 260%;
+    letter-spacing: 2px;
 }
 
-span:hover {
-    transform: scale(1.4);
+#calendar span {
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 30px;
+    transition: transform 0.1s ease-in-out;
 }
 
-span:active {
+#calendar span:hover {
     color: #E50000;
+}
+
+#calendar span:active {
+    transform: scale(.8);
 }
 
 table {
@@ -77,8 +85,10 @@ table {
 }
 
 td {
+    border: 1px solid #3B3738;
     padding: 5px 10px;
     transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 td:hover {
@@ -97,16 +107,23 @@ thead {
 }
 
 #now {
+    border: 1px solid #E50000;
     background: #E50000;
     border-radius: 8%;
 }
 
+
+/* TASK SECTION */
+
+.clearfix {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .choosen {
-    background: #e50000;
-    background: -moz-linear-gradient(top, #e50000 0%, #bf0600 17%, #6b1000 78%);
-    background: -webkit-linear-gradient(top, #e50000 0%,#bf0600 17%,#6b1000 78%);
-    background: linear-gradient(to bottom, #e50000 0%,#bf0600 17%,#6b1000 78%); /
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e50000', endColorstr='#6b1000',GradientType=0 );
+    border-right: 1px solid #E50000;
+    border-bottom: 1px solid #E50000;
     font-weight: bold;
     border-radius: 8%;
 }
@@ -115,11 +132,112 @@ thead {
     display: none;
     background: #3B3738;
     width: 350px;
-    height: 350px;
+    min-height: 150px;
     -webkit-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     -moz-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     margin-top: 25px;
+}
+
+#close {
+    color: #E50000;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 21px;
+    float: right;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+#close:hover {
+    background: #E50000;
+    color: #383435;
+}
+
+#close:active {
+    transform: scale(.8);
+}
+
+#task header {
+    border-bottom: 1px solid #E50000;
+}
+
+#task header p {
+    float: left;
+    padding: 5px 15px;
+    letter-spacing: 2px;
+}
+
+#addTaskInput {
+    width: 70%;
+    margin: 10px auto;
+}
+
+#task button, #addTaskInput input {
+    padding: 5px;
+    font-family: 'Gloria Hallelujah', cursive;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    outline: none;
+}
+
+#addTaskInput input {
+    width: 80%;
+    color: #E0E0E0;
+    background: #4F4C4D;
+}
+
+
+#addTaskInput ::placeholder {
+   color: #A0A0A0;
+}
+
+#addTaskInput input:focus {
+    border: 1px solid #E50000;
+}
+
+#task button:first-of-type {
+    background: #E0E0E0;
+    transition: transform .1s ease-in-out;
+}
+
+#addTaskInput button:first-of-type {
+    width: 15%;
+}
+
+#task button:hover {
+    color: #E0E0E0;
+    background: #E50000;
+    border: 1px solid #E50000;
+}
+
+#task button:active {
+    transform: scale(.9);
+}
+
+#task button:focus {
+    border: 1px solid #E50000;
+    background: #E50000;
+}
+
+#task > div p {
+    font-size: 20px;
+    text-align: center;
+}
+
+#task ol {
+    margin: 0 0 0 2rem;
+    padding-bottom: 10px;
+}
+
+#task ol li{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.delete {
+    margin: 0 10px;
 }
 
 @keyframes fadeInDown {
