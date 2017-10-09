@@ -254,7 +254,6 @@ class Calendar{
         function close(e){
             document.getElementById('task').style.display = 'none';
             const tdChoosen = document.querySelector('.choosen');
-            console.log(tdChoosen);
             tdChoosen.classList.remove('choosen');
         }
     }
