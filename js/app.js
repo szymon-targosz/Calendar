@@ -6,7 +6,12 @@ class Calendar{
         this.currentYear = currentDate.getFullYear();
         this.daysNames = ['Sun', 'Mon','Tue','Wed','Thu','Fri', 'Sat'];
         this.monthsNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        this.tasksList = {11102017:['mleko', 'jajka'], 23112017: ['pomidory', 'ziemniaki']};
+        this.tasksList = {
+                            d10102017: ['change status', 'check the calendar'],
+                            d05102017: ['airport'],
+                            d23112017: ["dog's birthday"],
+                            d13102017: ['package'],
+                        };
         this.td = null;
     }
 
@@ -54,11 +59,15 @@ class Calendar{
                 };
                 const thisTaskDateCheck = thisTaskDate.replace(/\./g, '');
 
-                const indexOfTheTask = self.tasksList[`${thisTaskDateCheck}`].indexOf(thisTask);
-                self.tasksList[`${thisTaskDateCheck}`].splice(indexOfTheTask, 1)
+                const indexOfTheTask = self.tasksList[`d${thisTaskDateCheck}`].indexOf(thisTask);
+                self.tasksList[`d${thisTaskDateCheck}`].splice(indexOfTheTask, 1)
 
                 // remove item from list
                 event.target.parentElement.remove();
+
+                if(self.tasksList[`d${thisTaskDateCheck}`].length === 0){
+                    self.td.removeChild(self.td.lastChild);
+                };
 
             } else if (event.target.className === 'done'){
 
@@ -73,8 +82,8 @@ class Calendar{
 
     render(){
         this.createCalendar(this.currentYear, this.currentMonth);
-        this.tasks();
         this.mark();
+        this.tasks();
     }
 
     createCalendar(year, month){
@@ -115,9 +124,9 @@ class Calendar{
 
             if(controlYear === this.currentYear && controlMonth === this.currentMonth && i === this.currentDay){
                 calendarTable += '<td id="now">' + i + '</td>';
-              } else{
+            } else{
                 calendarTable += '<td class="common">' + i + '</td>';
-              };
+            };
 
             if(dayOfTheWeek === 6){
                 calendarTable += '</tr>';
@@ -137,9 +146,35 @@ class Calendar{
     }
 
     mark(){
-        console.log(this.tasksList);
-        const keys = Object.keys(this.tasksList);
+        let month = '';
+        if(this.currentMonth + 1 < 10){
+            month += `0${this.currentMonth + 1}`;
+        } else{
+            month += (this.currentMonth + 1);
+        };
+
+        const keys = Object.keys(this.tasksList).filter((key) => {
+            return key[3] + key[4] === month
+        }).map((key) => {
+            if(key[1] == 0){
+                return key[2];
+            };
+            return key[1] + key[2];
+        });
         console.log(keys);
+
+        const tds = document.querySelectorAll('td:not(.otherMonth)');
+
+        const taskTds = [].slice.call(tds); // convert to array (tds is nodeList)
+
+        taskTds.forEach((td) => {
+            if(keys.indexOf(td.innerText) > -1){
+                td.style.position = 'relative';
+                const markDiv = document.createElement('div');
+                markDiv.classList.add('mark');
+                td.appendChild(markDiv);
+            }
+        });
     }
 
     tasks(){
@@ -154,17 +189,24 @@ class Calendar{
 
             const choosen = document.querySelector('.choosen');
             if(choosen != null){
-                document.querySelector('.choosen').style.color = '#E0E0E0';
                 document.querySelector('.choosen').classList.remove('choosen');
             };
             document.getElementById('task').style.display = 'block';
-            this.style.color = '#E50000';
+
 
             let date = '';
+            let tdInner = this.innerHTML;
+
+            // change inner if td is marked
+            if(tdInner.length > 2){
+                const tdFixed = tdInner.replace('<div class="mark"></div>', '');
+                tdInner = tdFixed;
+            };
+
             if(Number.parseInt(this.innerHTML) < 10){
-                date += '0' + this.innerHTML + '.';
+                date += '0' + tdInner + '.';
             } else{
-                date += this.innerHTML + '.';
+                date += tdInner + '.';
             };
 
             if(self.currentMonth + 1 < 10){
@@ -174,7 +216,6 @@ class Calendar{
             };
 
             date += self.currentYear;
-
             const dataCheck = date.replace(/\./g, '');
             document.querySelector('#task p').innerHTML = date;
 
@@ -186,9 +227,9 @@ class Calendar{
                 ol.removeChild(ol.firstChild)
             };
 
-            const dataTasks = self.tasksList[`${dataCheck}`];
+            const dataTasks = self.tasksList[`d${dataCheck}`];
             if(dataTasks != undefined){
-                for (var i = 0; i < dataTasks.length; i++) {
+                for (let i = 0; i < dataTasks.length; i++){
 
                     const newLi = document.createElement('li');
                     const delBtn = document.createElement('button');
@@ -212,7 +253,9 @@ class Calendar{
 
         function close(e){
             document.getElementById('task').style.display = 'none';
-            const choosenTds = document.querySelector('.choosen').classList.remove('choosen');
+            const tdChoosen = document.querySelector('.choosen');
+            console.log(tdChoosen);
+            tdChoosen.classList.remove('choosen');
         }
     }
 
@@ -240,7 +283,7 @@ class Calendar{
                     self.tasksList.x = [inputValue];
                     let str = null;
                     str = JSON.stringify(self.tasksList);
-                    str = str.replace('x', taskDateChanged);
+                    str = str.replace('x', 'd' + taskDateChanged);
                     self.tasksList = JSON.parse(str)
                 };
 

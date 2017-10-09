@@ -13,14 +13,14 @@ body {
 }
 
 #container {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
+    margin: 40px 0;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -41,7 +41,7 @@ body {
     -moz-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     padding: 10px;
-    border-radius: 2%;
+    border-top-right-radius: 22px;
 }
 
 #calendar header {
@@ -99,7 +99,7 @@ td:hover {
 
 thead {
     border-bottom: 1px solid #E50000;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .otherMonth {
@@ -126,6 +126,8 @@ thead {
     border-bottom: 1px solid #E50000;
     font-weight: bold;
     border-radius: 8%;
+    color: #E50000;
+    background: #2A2627;
 }
 
 #task {
@@ -137,6 +139,7 @@ thead {
     -moz-box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.74);
     margin-top: 25px;
+    border-bottom-left-radius: 18px;
 }
 
 /* TASK - HEADER */
