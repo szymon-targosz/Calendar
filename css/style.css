@@ -82,6 +82,11 @@ body {
 table {
     text-align: center;
     border-collapse: collapse;
+    padding: 10px;
+}
+
+th{
+    padding: 0 4px;
 }
 
 td {
@@ -99,7 +104,7 @@ td:hover {
 
 thead {
     border-bottom: 1px solid #E50000;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .otherMonth {

@@ -15,71 +15,6 @@ class Calendar{
         this.td = null;
     }
 
-    next(){
-        if(this.currentMonth === 11){
-            this.currentYear += 1;
-            this.currentMonth = 0;
-        } else{
-            this.currentMonth += 1;
-        };
-        this.render();
-    }
-
-    prev(){
-        if(this.currentMonth === 0){
-            this.currentYear -= 1;
-            this.currentMonth = 11;
-        } else{
-            this.currentMonth -= 1;
-        };
-        this.render();
-    }
-
-    buttons(){
-        const self = this;
-
-        document.getElementById('prev').addEventListener('click', function(){
-            self.prev();
-        });
-        document.getElementById('next').addEventListener('click', function(){
-            self.next();
-        });
-
-        let list = document.querySelector('ol');
-
-        list.addEventListener('click', function(event) {
-
-            if(event.target.className === 'delete'){
-                // remove item from objecy this.tasksList
-                let thisTask = '';
-                const thisTaskDate = document.querySelector('#task header p').innerHTML;
-
-                for(let i = 0; i < event.target.parentElement.innerHTML.indexOf('<'); i++){
-                    thisTask += event.target.parentElement.innerHTML[i];
-                };
-                const thisTaskDateCheck = thisTaskDate.replace(/\./g, '');
-
-                const indexOfTheTask = self.tasksList[`d${thisTaskDateCheck}`].indexOf(thisTask);
-                self.tasksList[`d${thisTaskDateCheck}`].splice(indexOfTheTask, 1)
-
-                // remove item from list
-                event.target.parentElement.remove();
-
-                if(self.tasksList[`d${thisTaskDateCheck}`].length === 0){
-                    self.td.removeChild(self.td.lastChild);
-                };
-
-            } else if (event.target.className === 'done'){
-
-                if(event.target.parentElement.style.textDecoration != 'line-through'){
-                    event.target.parentElement.style.textDecoration = 'line-through';
-                } else{
-                    event.target.parentElement.style.textDecoration = 'none';
-                };
-            };
-        });
-    }
-
     render(){
         this.createCalendar(this.currentYear, this.currentMonth);
         this.mark();
@@ -145,6 +80,72 @@ class Calendar{
         document.getElementById('calendarTable').innerHTML = calendarTable;
     }
 
+    next(){
+        if(this.currentMonth === 11){
+            this.currentYear += 1;
+            this.currentMonth = 0;
+        } else{
+            this.currentMonth += 1;
+        };
+        this.render();
+    }
+
+    prev(){
+        if(this.currentMonth === 0){
+            this.currentYear -= 1;
+            this.currentMonth = 11;
+        } else{
+            this.currentMonth -= 1;
+        };
+        this.render();
+    }
+
+    buttons(){
+        const self = this;
+
+        document.getElementById('prev').addEventListener('click', function(){
+            self.prev();
+        });
+        document.getElementById('next').addEventListener('click', function(){
+            self.next();
+        });
+
+        let list = document.querySelector('ol');
+
+        list.addEventListener('click', function(event) {
+
+            if(event.target.className === 'delete'){
+                // remove item from object this.tasksList
+                let thisTask = '';
+                const thisTaskDate = document.querySelector('#task header p').innerHTML;
+
+                for(let i = 0; i < event.target.parentElement.innerHTML.indexOf('<'); i++){
+                    thisTask += event.target.parentElement.innerHTML[i];
+                };
+                const thisTaskDateCheck = thisTaskDate.replace(/\./g, '');
+
+                const indexOfTheTask = self.tasksList[`d${thisTaskDateCheck}`].indexOf(thisTask);
+                self.tasksList[`d${thisTaskDateCheck}`].splice(indexOfTheTask, 1)
+
+                // remove item from list
+                event.target.parentElement.remove();
+                console.log(indexOfTheTask);
+                console.log(self.tasksList[`d${thisTaskDateCheck}`]);
+                if(self.tasksList[`d${thisTaskDateCheck}`].length === 0){
+                    self.td.removeChild(self.td.lastChild);
+                };
+
+            } else if (event.target.className === 'done'){
+
+                if(event.target.parentElement.style.textDecoration != 'line-through'){
+                    event.target.parentElement.style.textDecoration = 'line-through';
+                } else{
+                    event.target.parentElement.style.textDecoration = 'none';
+                };
+            };
+        });
+    }
+
     mark(){
         let month = '';
         if(this.currentMonth + 1 < 10){
@@ -161,7 +162,6 @@ class Calendar{
             };
             return key[1] + key[2];
         });
-        console.log(keys);
 
         const tds = document.querySelectorAll('td:not(.otherMonth)');
 
@@ -173,7 +173,7 @@ class Calendar{
                 const markDiv = document.createElement('div');
                 markDiv.classList.add('mark');
                 td.appendChild(markDiv);
-            }
+            };
         });
     }
 
@@ -277,8 +277,8 @@ class Calendar{
                 const taskDate = document.querySelector('#task p').innerHTML;
                 const taskDateChanged = taskDate.replace(/\./g, '');
 
-                if(self.tasksList.hasOwnProperty(taskDateChanged)){
-                    self.tasksList[`${taskDateChanged}`].push(inputValue);
+                if(self.tasksList.hasOwnProperty('d' + taskDateChanged)){
+                    self.tasksList[`d${taskDateChanged}`].push(inputValue);
                 } else {
                     self.tasksList.x = [inputValue];
                     let str = null;
